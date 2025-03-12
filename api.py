@@ -1,3 +1,4 @@
 import requests
 
-requests.get("https://www.google.com/books/jsapi.js")
+url = https://www.google.com/books/jsapi.js
+requests.get(url)
