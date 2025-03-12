@@ -5,7 +5,7 @@ connection = sqlite3.connect("books.db")
 cursor = connection.cursor()
 
 #bruges til at lave en connection til databasen og hente data. ligesom en mellemmand. cursor objekt
-cursor.execute("CREATE TABLE IF NOT EXISTS books (titel string, author string, release_year integer)") #sql query
+cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, titel string, author string, release_year integer)") #sql query
 
 
 
