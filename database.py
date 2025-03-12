@@ -17,7 +17,7 @@ books = [
     ("Hunger games", "suzanne collins", 2008 )
 ]
 
-sql = "INSERT INTO books (Id INTEGER PRIMARY KEY,  titel, author, release_year) VALUES (?, ?, ?)"
+sql = "INSERT INTO books (titel, author, release_year) VALUES (?, ?, ?)"
 #vi laver en prepared statement. for ikke at få sql injection.
 for book in books:
     cursor.execute(sql, book)
