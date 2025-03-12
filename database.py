@@ -20,7 +20,7 @@ for book in books:
     cursor.execute(sql, book)
     connection.commit()
 
-SELECT ROWID    
+SELECT ROWID books
 
 connection.commit()
 connection.close()
