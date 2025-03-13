@@ -19,11 +19,11 @@ books = [
 
 sql = "INSERT INTO books (titel, author, release_year) VALUES (?, ?, ?)"
 #vi laver en prepared statement. for ikke at få sql injection.
-for book in books:
-    cursor.execute(sql, book)
-    connection.commit()
+for book in books:              # for loop der ittere over vores tabels indhold 
+    cursor.execute(sql, book) #udføre kommandoen 
+    connection.commit() #gemmer ændringerne
 
 
 
-connection.commit()
+
 connection.close()
