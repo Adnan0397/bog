@@ -8,7 +8,7 @@ url = f"https://openlibrary.org/search.json?q={search}" #bruger f" da det gør d
 response= requests.get(url) # laver et reponse til url 
 
 if response.status_code == 200: # if statment. hvis der er reponse til url gør nu...
-    data = response.text # variabel data der gemmer forespørgsel
+    data = response.text # variabel data der gemmer data
     print(data)
 
 
