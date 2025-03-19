@@ -14,8 +14,19 @@ def search():
         #{} er placeholders
         response= requests.get(url) # bruger get til at hente data. 
         data = response.json() # variabel data der gemmer data.
-        print(data["docs"][0])
+        
+        book = data["docs"][0] #første resultat i vores liste. !!01234
+        title = book.get("tittle")
+        author = book.get("author_name")
+        year = book.get("first_publish_year")
+        value = book.get("")
+        
+        #print(data["docs"][0])
+
+
         return render_template("search_html")
+
+
 
 #todoo indsæt data fra api og render det på html
 
