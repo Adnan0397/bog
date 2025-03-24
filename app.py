@@ -9,15 +9,15 @@ def index():
 
 @app.route("/search_book")
 def search():
-        bookquery = request.args.get("bookquery") #vores query data fra input er stored her. 
+        bookquery = request.args.get("bookinput") #vores query data fra input er stored her. 
         url = f"https://openlibrary.org/search.json?q={bookquery}" #bruger f" da det gør det nemmer at indsætte variabler i tekststrenge. en f" er en række af karaktere/bogstaver. 
         #{} er placeholders
        
         response= requests.get(url) # bruger get til at hente data. 
     
  
-        if response.status_code == 200:
-            data = response.json() # variabel data der gemmer data.
+        if response.status_code == 200: #tjekker status
+            data = response.json() #response bliver lavet om til json format, og gemt i variablen data. 
         else:
             print(f"failed{response.status_code}")
         
@@ -31,7 +31,7 @@ def search():
 
         print(value, title, author, year)
 
-        return render_template("search_book.html", title=title, author=author, year=year, value=value)
+        return render_template("search_book.html", title=title, author=author, year=year, value=value) #sender data videre til search side
 
        
 
