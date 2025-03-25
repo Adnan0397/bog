@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import requests
+import re
+
 app = Flask(__name__) #initialiser vores flask
 
 @app.route("/")
@@ -34,6 +36,8 @@ def search():
         return render_template("search_book.html", title=title, author=author, year=year, value=value) #sender data videre til search side
 
        
+pattern = ^\d$
+
 
 
         
