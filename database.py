@@ -12,6 +12,7 @@ def init_db():
 
 
 def add_to_db():
+    connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
     cursor.execute("INSERT INTO books (titel, author, release_year) VALUES (?, ?, ?)
     ,(title, author, year, isbn))")
