@@ -3,6 +3,9 @@ import requests
 import re
 import database
 
+database.init_db()
+
+
 app = Flask(__name__) #initialiser vores flask
 
 @app.route("/")
@@ -24,7 +27,6 @@ def search():
         else:
             print(f"failed{response.status_code}")
         
-        data = response.json() # variabel data der gemmer data.
         
 
         book = data["docs"][0] #første resultat i vores liste. 01234
@@ -43,8 +45,8 @@ def search():
                  isbn = match.group(1)
                  break
         
-            if isbn: 
-                 database.add(title, author, year, isbn)
+        if isbn: 
+            database.add_to_db(title, author, year, isbn)
             
     
          
