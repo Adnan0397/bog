@@ -25,18 +25,35 @@ def search():
         
         data = response.json() # variabel data der gemmer data.
         
+
         book = data["docs"][0] #første resultat i vores liste. 01234
         title = book.get("title")
         author = book.get("author_name")
         year = book.get("first_publish_year")
-        value = book.get("ia")[0]
+        values = book.get("ia")
 
-        print(value, title, author, year)
+        pattern = re.compile(r"isbn_(\d+)")
 
-        return render_template("search_book.html", title=title, author=author, year=year, value=value) #sender data videre til search side
+        isbn = "isbn"
+
+        for i in values:
+             x = i.find("isbn")
+             if x == 0:
+                  print(i)
+
+                
+                
+                  
+
+        
+    
+        print(f"{title}, {author}, {year}, {isbn}")
+
+
+
+        return render_template("search_book.html", title=title, author=author, year=year, isbn=isbn) #sender data videre til search side
 
        
-pattern = ^\d$
 
 
 
