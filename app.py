@@ -32,6 +32,10 @@ def search():
         book = data["docs"][0] #første resultat i vores liste. 01234
         title = book.get("title")
         author = book.get("author_name")
+
+        if isinstance(author, list):
+            author = ", ".join(author)
+
         year = book.get("first_publish_year")
         values = book.get("ia")
 
