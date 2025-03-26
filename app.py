@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 import re
+import database
 
 app = Flask(__name__) #initialiser vores flask
 
@@ -37,9 +38,16 @@ def search():
         isbn = "isbn"
 
         for i in values:
-             x = i.find("isbn")
-             if x == 0:
-                  print(i)
+            match = pattern.match(i)
+            if match:
+                 isbn = match.group(1)
+                 break
+        
+            if isbn: 
+                 database.add(title, author, year, isbn)
+            
+    
+         
 
                 
                 
