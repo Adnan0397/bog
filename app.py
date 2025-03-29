@@ -12,8 +12,8 @@ app = Flask(__name__) #initialiser vores flask
 def index():
     return render_template("index.html")
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8000)
+#if __name__ == '__main__':
+ #   app.run(host="0.0.0.0", port=8000)
 
 @app.route("/search_book")
 def search():
@@ -65,11 +65,18 @@ def search():
     
         print(f"{title}, {author}, {year}, {isbn}")
 
-
+  
 
         return render_template("search_book.html", title=title, author=author, year=year, isbn=isbn) #sender data videre til search side
 
-       
+    
+@app.route("/status", method = [POST])
+def book_status():
+    status = requests.form("status") 
+    isbn = request.get("isbn")
+
+    
+    database.update(status)
 
 
 
