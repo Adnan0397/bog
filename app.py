@@ -12,6 +12,8 @@ app = Flask(__name__) #initialiser vores flask
 def index():
     return render_template("index.html")
 
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=8000)
 
 @app.route("/search_book")
 def search():
@@ -50,7 +52,7 @@ def search():
                  break
         
         if isbn: 
-            database.add_to_db(title, author, year, isbn)
+            database.add_db(title, author, year, isbn)
             
     
          

@@ -11,14 +11,14 @@ def init_db():
 
     connection.commit()
   
-def add_to_db(title, author, year, isbn):
+def add_db(title, author, year, isbn): #parameter 
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
 
-    sql = "INSERT INTO books (title, author, year, isbn) VALUES (?, ?, ?, ?)"
+    sql = "INSERT IGNORE INTO  books (title, author, year, isbn) VALUES (?, ?, ?, ?)"
 
       
-    cursor.execute(sql, (title, author, year, isbn))
+    cursor.execute(sql, (title, author, year, isbn))  #https://tinyurl.com/5fhjnp3j
 
 
 
@@ -29,7 +29,7 @@ def add_to_db(title, author, year, isbn):
    
 
     connection.commit() #gemmer ændringerne
-      except sqlite3.Error as error:
-      print(f"Error {error}")  
-    finally:
-      connection.close() 
+      #except sqlite3.Error as error:
+     # print(f"Error {error}")  
+   # finally:
+    connection.close() 
