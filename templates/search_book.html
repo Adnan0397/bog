@@ -8,13 +8,13 @@
         
     </head>
     <body>
-        <img src="https://covers.openlibrary.org/b/isbn/{{ isbn }}-M.jpg" alt="book_cover">
+        <img src="{{cover}}" alt="book_cover">
       
-        <form action="{{url for ("book_status") }} method = "POST">
-            <button type "submit" name="status" value="Plan to Read"></button>Plan to Read</button>
+        
+            <button type="submit" name="status" value="Plan to Read"></button>Plan to Read</button>
             <button type="submit" name="status" value="Reading">Reading</button>
             <button type="submit" name="status" value="Finished Reading">Finished Reading</button>
-        </form>
+        
       
         <a href="{{ url_for('index') }}">Back To Lobby</a>
     </body>

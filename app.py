@@ -39,44 +39,39 @@ def search():
             author = ", ".join(author)
 
         year = book.get("first_publish_year")
-        values = book.get("ia")
+        cover_id = book.get("cover_i")
+        cover = f"https://covers.openlibrary.org/b/ID/{cover_id}-L.jpg"
 
-        pattern = re.compile(r"isbn_(\d+)")
+        #pattern = re.compile(r"isbn_(\d+)")
 
-        isbn = "isbn"
+        #isbn = "isbn"
 
-        for i in values:
-            match = pattern.match(i)
-            if match:
-                 isbn = match.group(1)
-                 break
+        #for i in values:
+            #match = pattern.match(i)
+            #if match:
+                 #isbn = match.group(1)
+                # break
         
-        if isbn: 
-            database.add_db(title, author, year, isbn)
+        if cover_id: 
+            database.add_db(title, author, year, cover)
             
     
          
 
-                
-                
+ 
+#@app.route("/status")               
+#def status():  
+        #return render_template("status.html")          
                   
 
-        
-    
-        print(f"{title}, {author}, {year}, {isbn}")
+        print(f"{title}, {author}, {year}, {cover}")
 
   
 
-        return render_template("search_book.html", title=title, author=author, year=year, isbn=isbn) #sender data videre til search side
+        return render_template("search_book.html", title=title, author=author, year=year, cover=cover) #sender data videre til search side
 
     
-@app.route("/status", method = [POST])
-def book_status():
-    status = requests.form("status") 
-    isbn = request.get("isbn")
 
-    
-    database.update(status)
 
 
 
