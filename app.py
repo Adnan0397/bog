@@ -72,8 +72,9 @@ def add_status():
 
         database.update_reading_list(status, cover_id)
 
+        print(status, cover_id)
 
-        return render_template("list.html", status=status)          
+        return render_template("search_book.html", status=status, cover=cover_id)          
                   
 
         

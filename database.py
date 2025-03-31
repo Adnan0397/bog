@@ -18,6 +18,7 @@ def add_db(title, author, year, cover_id, reading_status): #parameter
 
     
     cursor.execute(sql, (title, author, year, cover_id, reading_status))  #https://tinyurl.com/5fhjnp3j
+    connection.commit()
 
 def update_reading_list(reading_status, cover_id):
     connection = sqlite3.connect("books.db")
@@ -34,7 +35,11 @@ def update_reading_list(reading_status, cover_id):
 
    
 
-    connection.commit() #gemmer ændringerne
+    connection.commit()
+    cursor.close()
+    
+    
+     #gemmer ændringerne
       #except sqlite3.Error as error:
      # print(f"Error {error}")  
    # finally:
