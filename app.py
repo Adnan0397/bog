@@ -40,7 +40,7 @@ def search():
 
         year = book.get("first_publish_year")
         cover_id = book.get("cover_i")
-        cover = f"https://covers.openlibrary.org/b/ID/{cover_id}-L.jpg"
+        #cover = f"https://covers.openlibrary.org/b/ID/{cover_id}-L.jpg"
 
         #pattern = re.compile(r"isbn_(\d+)")
 
@@ -55,7 +55,7 @@ def search():
         if cover_id: 
             database.add_db(title, author, year, cover_id, reading_status=None)
 
-            print(f"{title}, {author}, {year}, {cover}")
+        print(f"{title}, {author}, {year}, {cover_id}")
 
     
         return render_template("search_book.html", title=title, author=author, year=year, cover=cover_id) #sender data videre til search side
