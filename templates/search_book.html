@@ -3,18 +3,26 @@
     <head>
         <h1>hi welcome page 2</h1>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="/styles.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/styles.css">
+        
         <title>search</title>
         
     </head>
     <body>
+        
         <img src="{{cover}}" alt="book_cover">
       
         
-            <button type="submit" name="status" value="Plan to Read"></button>Plan to Read</button>
-            <button type="submit" name="status" value="Reading">Reading</button>
-            <button type="submit" name="status" value="Finished Reading">Finished Reading</button>
-        
+        <div>
+                <button type="submit" name="status" value="Plan to Read">Plan to Read</button>
+                <button type="submit" name="status" value="Reading">Reading</button>
+                <button type="submit" name="status" value="Finished Reading">Finished Reading</button>
+                <button type="submit" name="status" value="Completed">Completed</button>
+              
+        </div>
+
       
         <a href="{{ url_for('index') }}">Back To Lobby</a>
     </body>
