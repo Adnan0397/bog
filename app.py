@@ -53,24 +53,30 @@ def search():
                 # break
         
         if cover_id: 
-            database.add_db(title, author, year, cover)
-            
+            database.add_db(title, author, year, cover_id, reading_status=None)
+
+            print(f"{title}, {author}, {year}, {cover}")
+
     
-         
-
- 
-#@app.route("/status")               
-#def status():  
-        #return render_template("status.html")          
-                  
-
-        print(f"{title}, {author}, {year}, {cover_id}")
-
-  
-
         return render_template("search_book.html", title=title, author=author, year=year, cover=cover_id) #sender data videre til search side
 
     
+            
+
+           
+         
+
+ 
+@app.route("/status")               
+def status():  
+        return render_template("status.html")          
+                  
+
+        
+
+  
+
+        
 
 
 

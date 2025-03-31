@@ -7,7 +7,7 @@ def init_db():
 
 
 
-    cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, cover_id TEXT, reading_status TEXT)") #sql query
+    cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, cover_id INTEGER, reading_status TEXT)") #sql query
 
     connection.commit()
   
@@ -15,9 +15,10 @@ def add_db(title, author, year, cover_id, reading_status): #parameter
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
 
-    sql = "INSERT OR IGNORE INTO  books (title, author, year, cover_id) VALUES (?, ?, ?, ?, ?)"
+    sql = "INSERT OR IGNORE INTO  books (title, author, year, cover_id, reading_status) VALUES (?, ?, ?, ?, ?)"
 
-      
+
+    
     cursor.execute(sql, (title, author, year, cover_id, reading_status))  #https://tinyurl.com/5fhjnp3j
 
 def status():
