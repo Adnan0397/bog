@@ -7,24 +7,24 @@ def init_db():
 
 
 
-    cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn TEXT)") #sql query
+    cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, cover_id TEXT, reading_status TEXT)") #sql query
 
     connection.commit()
   
-def add_db(title, author, year, isbn): #parameter 
+def add_db(title, author, year, cover_id, reading_status): #parameter 
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
 
-    sql = "INSERT OR IGNORE INTO  books (title, author, year, isbn) VALUES (?, ?, ?, ?)"
+    sql = "INSERT OR IGNORE INTO  books (title, author, year, cover_id) VALUES (?, ?, ?, ?, ?)"
 
       
-    cursor.execute(sql, (title, author, year, isbn))  #https://tinyurl.com/5fhjnp3j
+    cursor.execute(sql, (title, author, year, cover_id, reading_status))  #https://tinyurl.com/5fhjnp3j
 
 def status():
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
 
-    sql = "ALTER TABLE books ADD reading_status"
+    
 
    
 

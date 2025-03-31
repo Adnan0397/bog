@@ -64,11 +64,11 @@ def search():
         #return render_template("status.html")          
                   
 
-        print(f"{title}, {author}, {year}, {cover}")
+        print(f"{title}, {author}, {year}, {cover_id}")
 
   
 
-        return render_template("search_book.html", title=title, author=author, year=year, cover=cover) #sender data videre til search side
+        return render_template("search_book.html", title=title, author=author, year=year, cover=cover_id) #sender data videre til search side
 
     
 
