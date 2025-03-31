@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import requests
-import re
 import database
 
 database.init_db()
@@ -40,7 +39,6 @@ def search():
 
         year = book.get("first_publish_year")
         cover_id = book.get("cover_i")
-        #cover = f"https://covers.openlibrary.org/b/ID/{cover_id}-L.jpg"
 
         #pattern = re.compile(r"isbn_(\d+)")
 
@@ -67,9 +65,15 @@ def search():
          
 
  
-@app.route("/status")               
-def status():  
-        return render_template("status.html")          
+@app.route("/status", methods=["POST"])               
+def add_status(): 
+        status = request.form.get("status")
+        cover_id = request.form.get("cover_id")
+
+        database.update_reading_list(status, cover_id)
+
+
+        return render_template("list.html", status=status)          
                   
 
         

@@ -4,12 +4,10 @@ import sqlite3
 def init_db():
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor() #bruges til at lave en connection til databasen og hente data. ligesom en mellemmand. cursor objekt
-
-
-
     cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, cover_id INTEGER, reading_status TEXT)") #sql query
 
     connection.commit()
+    
   
 def add_db(title, author, year, cover_id, reading_status): #parameter 
     connection = sqlite3.connect("books.db")
@@ -21,9 +19,16 @@ def add_db(title, author, year, cover_id, reading_status): #parameter
     
     cursor.execute(sql, (title, author, year, cover_id, reading_status))  #https://tinyurl.com/5fhjnp3j
 
-def status():
+def update_reading_list(reading_status, cover_id):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
+
+    sql = "UPDATE books SET reading_status = ? WHERE cover_id = ?  "
+    cursor.execute(sql, (reading_status, cover_id))
+
+    
+
+   
 
     
 
