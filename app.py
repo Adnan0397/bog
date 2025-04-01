@@ -52,7 +52,7 @@ def search():
                 # break
         
         if cover_id: 
-            database.add_db(title, author, year, cover_id, reading_status=None)
+            database.add_db(title, author, year, cover_id, "")
 
         print(f"{title}, {author}, {year}, {cover_id}")
 
@@ -84,7 +84,7 @@ def show_list():
     book = database.all_books()
     filtered_status = request.args.get("status")
     if filtered_status: 
-         book = database.all_books_filtered("filtered_status")
+         book = database.all_books_filtered(filtered_status)
 
     return render_template("list.html", book=book)
         

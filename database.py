@@ -40,7 +40,7 @@ def all_books():
 def all_books_filtered(status):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM books WHERE reading_status = ?", (status))
+    cursor.execute("SELECT * FROM books WHERE reading_status = ?", (status,))
     book = cursor.fetchall()
     cursor.close()
     connection.close() 
