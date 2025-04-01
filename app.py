@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
 import database
+import sqlite3
 
 database.init_db()
 
@@ -77,9 +78,21 @@ def add_status():
         return render_template("search_book.html", status=status, cover=cover_id)          
                   
 
+
+@app.route("/list")
+def show_list():
+    book = database.all_books()
+    filtered_status = request.args.get("status")
+    if filtered_status: 
+         book = database.all_books_filtered("filtered_status")
+
+    return render_template("list.html", book=book)
         
 
-  
+#conn = sqlite3.connect(database)
+#cur = conn.cursor()
+#cur.execute("SELECT * from ")
+
 
         
 
