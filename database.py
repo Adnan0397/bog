@@ -8,6 +8,7 @@ def init_db():
     connection.commit()
     
   
+  
 def add_db(title, author, year, cover_id, reading_status): #parameter 
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
