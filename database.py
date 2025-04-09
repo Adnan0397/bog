@@ -8,7 +8,7 @@ def init_db():
     connection.commit()
     
   
-  
+
 def add_db(title, author, year, cover_id, reading_status): #parameter 
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
@@ -27,25 +27,7 @@ def update_reading_list(reading_status, cover_id):
         
 
 
-def all_books():
-    connection = sqlite3.connect("books.db")
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM books")
-    book = cursor.fetchall()
-    cursor.close()
-    connection.close() 
-    return book
 
-
-
-def all_books_filtered(status):
-    connection = sqlite3.connect("books.db")
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM books WHERE reading_status = ?", (status,))
-    book = cursor.fetchall()
-    cursor.close()
-    connection.close() 
-    return book
 
 
      #gemmer ændringerne
