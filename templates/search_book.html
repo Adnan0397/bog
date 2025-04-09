@@ -15,8 +15,10 @@
         <img src="https://covers.openlibrary.org/b/id/{{ cover }}-L.jpg" alt="Book Cover">
 
         <div>
+            <img src="{{cover}}" alt="">
+            <p>This is {{ title }} by {{author}}, and was published in the year {{year}} </p>
             <form action="/status" method="POST">
-                <input type="hidden" name = "cover_id" value="{{cover }}">
+                
                 <button type="submit" name="status" value="Plan to Read">Plan to Read</button>
                 <button type="submit" name="status" value="Reading">Reading</button>
                 <button type="submit" name="status" value="Finished Reading">Finished Reading</button>

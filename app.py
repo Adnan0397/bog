@@ -41,6 +41,8 @@ def search():
         year = book.get("first_publish_year")
         cover_id = book.get("cover_i")
 
+        print("cover id: ", cover_id)
+
         #pattern = re.compile(r"isbn_(\d+)")
 
         #isbn = "isbn"
