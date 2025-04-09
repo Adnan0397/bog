@@ -25,7 +25,9 @@ def update_reading_list(reading_status, cover_id):
     connection.commit()
 
         
-
+def userdata(password, username):
+    connection = sqlite3.connect("books.db")
+    cursor = connection.cursor()
 
 
 
