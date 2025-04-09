@@ -79,7 +79,7 @@ def add_status():
 
         return render_template("search_book.html", status=status, cover=cover_id)          
                   
-
+ 
 
 @app.route("/list")
 def show_list():
