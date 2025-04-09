@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import database
 import sqlite3
+
 
 database.init_db()
 
@@ -12,8 +13,11 @@ app = Flask(__name__) #initialiser vores flask
 def index():
     return render_template("index.html")
 
-#if __name__ == '__main__':
- #   app.run(host="0.0.0.0", port=8000)
+
+
+@app.route("/login", methods=["POST"])
+def login():
+     return render_template("login.html")
 
 @app.route("/search_book")
 def search():
