@@ -8,9 +8,10 @@
 <body>
     <h2>Login</h2>
     <form action="/login" method="POST">
-        <input type="text" name="username" placeholder="Brugernavn">
-        <input type="password" name="password" placeholder="Adgangskode">
+        <input type="text" name="username" placeholder="Brugernavn" required>
+        <input type="password" name="password" placeholder="Adgangskode" required>
         <button type="submit">Log ind</button>
     </form>
+    <p>NO USER? signup <a href="/signup"> Create one</a></p>
 </body>
 </html>

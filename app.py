@@ -2,12 +2,15 @@ from flask import Flask, render_template, request, redirect, url_for
 import requests
 import database
 import sqlite3
-
+from flask import session, flash
+from werkzeug.security import check_password_hash
+import os
 
 database.init_db()
 
 
 app = Flask(__name__) #initialiser vores flask
+app.secret_key = os.urandom(24)  
 
 @app.route("/")
 def index():
@@ -15,11 +18,6 @@ def index():
 
 
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-     
-
-     return render_template("login.html")
 
 @app.route("/search_book")
 def search():
@@ -85,17 +83,64 @@ def add_status():
 
         return render_template("search_book.html", status=status, cover=cover_id)          
                   
- 
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+     if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username or not password:
+            return render_template("signup.html", error="Brugernavn og adgangskode kræves")
+        
+        try:
+            # Create new user
+            database.create_user(username, password)
+            return redirect("/login")
+        except sqlite3.IntegrityError:
+            return render_template("signup.html", error="Brugernavnet findes allerede")
+        
+        return render_template("signup.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username or not password:
+            return render_template("login.html", error="Brugernavn og adgangskode kræves")
+
+        conn = sqlite3.connect("books.db")
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+        user = cursor.fetchone()
+        conn.close()
+
+        if user and check_password_hash(user[2], password):  # user[2] = password hash
+            session["user_id"] = user[0]
+            session["username"] = user[1]
+            return redirect("/")
+        else:
+            return render_template("login.html", error="Forkert brugernavn eller adgangskode")
+
+    return render_template("login.html")
+
+def logout():
+    session.clear()
+    return redirect("/")
+        
+
 
 @app.route("/list")
 def show_list():
-    book = database.all_books()
-    filtered_status = request.args.get("status")
-    if filtered_status: 
-         book = database.all_books_filtered(filtered_status)
-
-    return render_template("list.html", book=book)
-        
+    reading_books = database.get_books_by_status("Reading")
+    completed_books = database.get_books_by_status("Completed")
+    planned_books = database.get_books_by_status("Plan to Read")
+    
+    return render_template("list.html", reading_books=reading_books, completed_books=completed_books,planned_books=planned_books)
+               
+                          
 
 #conn = sqlite3.connect(database)
 #cur = conn.cursor()
@@ -112,6 +157,8 @@ def show_list():
 
 
 #todoo indsæt data fra api og render det på html
+
+
 
 
 
