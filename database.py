@@ -4,11 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 def init_db():
     connection = sqlite3.connect("books.db")
-    cursor = connection.cursor() #bruges til at lave en connection til databasen og hente data. ligesom en mellemmand. cursor objekt
-    cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, cover_id INTEGER, reading_status TEXT, user_id INTEGER)")
-    
-    cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE,password TEXT)")
+    cursor = connection.cursor()
+    cursor.execute("""CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY,title TEXT,author TEXT,year INTEGER,cover_id INTEGER,reading_status TEXT,user_id INTEGER)""")
 
+    cursor.execute("""CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,username TEXT UNIQUE,password TEXT)""")
     connection.commit()
     connection.close()
 
