@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
     <title>Liste</title>
+    <h2>Plan to Read</h2>
+{% for book in planned_books %}
+  <div>
+    <img src="https://covers.openlibrary.org/b/id/{{ book[4] }}-M.jpg" alt="Cover">
+    <p><strong>{{ book[1] }}</strong> af {{ book[2] }} ({{ book[3] }})</p>
+    <form method="POST" action="/delete">
+        <input type="hidden" name="cover_id" value="{{ book[4] }}">
+        <button type="submit">🗑 Slet</button>
+    </form>
+  </div>
+{% endfor %}
+
 </head>
-<body>
-    <table>
-        <th>
-            <tr>
-                <th>complete</th>
-                <th>Reading</th>
-            </tr>
-        </th>
-    </table>
       <a href="{{ url_for('index') }}">Back To Lobby</a>
 </body>
 </html>

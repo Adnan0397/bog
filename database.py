@@ -5,19 +5,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 def init_db():
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor() #bruges til at lave en connection til databasen og hente data. ligesom en mellemmand. cursor objekt
-    cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, cover_id INTEGER, reading_status TEXT)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS books (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, cover_id INTEGER, reading_status TEXT, user_id INTEGER)")
     
     cursor.execute("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE,password TEXT)")
 
     connection.commit()
     connection.close()
 
-def add_db(title, author, year, cover_id, reading_status): #parameter 
+def add_db(title, author, year, cover_id, reading_status, user_id):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
-    sql = "INSERT OR IGNORE INTO  books (title, author, year, cover_id, reading_status) VALUES (?, ?, ?, ?, ?)"
-    cursor.execute(sql, (title, author, year, cover_id, reading_status))  #https://tinyurl.com/5fhjnp3j
+    sql = "INSERT OR IGNORE INTO books (title, author, year, cover_id, reading_status, user_id) VALUES (?, ?, ?, ?, ?, ?)"
+    cursor.execute(sql, (title, author, year, cover_id, reading_status, user_id))
     connection.commit()
+
 
 
 def update_reading_list(reading_status, cover_id):
@@ -41,21 +42,35 @@ def create_user(username, password):
 
 
 
-def get_books_by_status(status=None):
+def get_books_by_status(status, user_id):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
-    
-    if status:
-        sql = "SELECT * FROM books WHERE reading_status = ?"
-        cursor.execute(sql, (status,))
-    else:
-        sql = "SELECT * FROM books"
-        cursor.execute(sql)
-    
+    sql = "SELECT * FROM books WHERE reading_status = ? AND user_id = ?"
+    cursor.execute(sql, (status, user_id))
     books = cursor.fetchall()
     connection.close()
     return books
 
+def get_all_books_for_user(user_id):
+    connection = sqlite3.connect("books.db")
+    cursor = connection.cursor()
+    sql = "SELECT * FROM books WHERE user_id = ?"
+    cursor.execute(sql, (user_id,))
+    books = cursor.fetchall()
+    connection.close()
+    return books
+
+def delete_book(cover_id, user_id):
+    connection = sqlite3.connect("books.db")
+    cursor = connection.cursor()
+    try:
+        sql = "DELETE FROM books WHERE cover_id = ? AND user_id = ?"
+        cursor.execute(sql, (cover_id, user_id))
+        connection.commit()
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+    finally:
+        connection.close()
     
 
      #gemmer ændringerne

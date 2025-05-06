@@ -1,32 +1,27 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <h1>hi welcome page 2</h1>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="/styles.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/static/styles.css">
-        
-        <title>search</title>
-        
-    </head>
-    <body>
-        
-        <img src="https://covers.openlibrary.org/b/id/{{ cover }}-L.jpg" alt="Book Cover">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h1>hi welcome page 2</h1>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>search</title>
+</head>
+<body>
+    <div>
+        <img src="https://covers.openlibrary.org/b/id/{{ cover }}-L.jpg" alt="Cover">
+        <p>This is {{ title }} by {{ author }}, and was published in the year {{ year }}.</p>
 
-        <div>
-            <img src="{{cover}}" alt="">
-            <p>This is {{ title }} by {{author}}, and was published in the year {{year}} </p>
-            <form action="/status" method="POST">
-                
-                <button type="submit" name="status" value="Plan to Read">Plan to Read</button>
-                <button type="submit" name="status" value="Reading">Reading</button>
-                <button type="submit" name="status" value="Finished Reading">Finished Reading</button>
-                <button type="submit" name="status" value="Completed">Completed</button>
-            </form>
-        </div>
+        <form action="/status" method="POST">
+            <button type="submit" name="status" value="Plan to Read">Plan to Read</button>
+            <button type="submit" name="status" value="Reading">Reading</button>
+            <button type="submit" name="status" value="Finished Reading">Finished Reading</button>
+            <button type="submit" name="status" value="Completed">Completed</button>
+        </form>
+    </div>
 
-      
-        <a href="{{ url_for('index') }}">Back To Lobby</a>
-    </body>
-    </html>
+    <a href="{{ url_for('index') }}">Back To Lobby</a>
+
+</body>
+</html>

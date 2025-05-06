@@ -5,18 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/styles.css">
-    <title>boghjan</title>
+    <title></title>
   </head>
   <body>
     <h1>hi welcome to my site</h1>
-    <form action="{{ url_for('search') }}" method="get"> <!-- vi sender hvad der bliver indtastet til search siden-->
-      <input type="text" placeholder= "enter book name" name="bookinput", t/>
+    <form action="{{ url_for('search') }}" method="get">
+      <input type="text" name="bookinput" placeholder="Enter book name" required />
+      <button type="submit">Search</button>
     </form>
-    <a href="{{url_for('show_list')}}">
-      <button>View your list</button>
-    </a>
-    <a href="{{url_for('login')}}">
-      <button>login</button>
+    
+    <a href="{{ url_for('logout') }}">
+      <button>Log out</button>
     </a>
 
   </body>

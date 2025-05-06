@@ -1,0 +1,27 @@
+<!-- templates/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <title>Sign Up</title>
+</head>
+<body>
+  <h2>Create user</h2>
+
+  <form action="{{ url_for('signup') }}" method="POST">
+    <div>
+      <label for="username">Username</label><br>
+      <input id="username" type="text" name="username" placeholder="Dit brugernavn" required>
+    </div>
+    <div>
+      <label for="password">Password</label><br>
+      <input id="password" type="password" name="password" placeholder="Din adgangskode" required>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+
+  <p>Already a user? <a href="/login">Sign up here!</a></p>
+</body>
+</html>
