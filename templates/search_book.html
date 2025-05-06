@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <h1>hi welcome page 2</h1>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
-    <title>search</title>
+    <title>Search Result</title>
 </head>
 <body>
+    <h1>Book Information</h1>
     <div>
         <img src="https://covers.openlibrary.org/b/id/{{ cover }}-L.jpg" alt="Cover">
         <p>This is {{ title }} by {{ author }}, and was published in the year {{ year }}.</p>
 
         <form action="/status" method="POST">
+            <input type="hidden" name="cover_id" value="{{ cover }}">
+            <input type="hidden" name="title" value="{{ title }}">
+            <input type="hidden" name="author" value="{{ author }}">
+            <input type="hidden" name="year" value="{{ year }}">
             <button type="submit" name="status" value="Plan to Read">Plan to Read</button>
             <button type="submit" name="status" value="Reading">Reading</button>
-            <button type="submit" name="status" value="Finished Reading">Finished Reading</button>
             <button type="submit" name="status" value="Completed">Completed</button>
         </form>
     </div>
 
     <a href="{{ url_for('index') }}">Back To Lobby</a>
-
+    <a href="{{ url_for('show_list') }}">View My Reading List</a>
 </body>
 </html>

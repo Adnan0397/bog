@@ -20,12 +20,27 @@ def add_db(title, author, year, cover_id, reading_status, user_id):
 
 
 
-def update_reading_list(reading_status, cover_id):
+def update_reading_list(reading_status, cover_id, user_id, title, author, year):
     connection = sqlite3.connect("books.db")
     cursor = connection.cursor()
-    sql = "UPDATE books SET reading_status = ? WHERE cover_id = ?  "
-    cursor.execute(sql, (reading_status, cover_id))
+
+
+    cursor.execute("SELECT * FROM books WHERE cover_id = ? AND user_id = ?", (cover_id, user_id))
+    book = cursor.fetchone()
+    
+
+    if book:
+         sql = "UPDATE books SET reading_status = ? WHERE cover_id = ? AND user_id = ?"
+         cursor.execute(sql, (reading_status, cover_id, user_id))
+    
+    else: 
+        sql = "INSERT INTO books (title, author, year, cover_id, reading_status, user_id) VALUES (?, ?, ?, ?, ?, ?)"
+        cursor.execute(sql, (title, author, year, cover_id, reading_status, user_id))
+    
+    
+
     connection.commit()
+    connection.close()
 
         
 def create_user(username, password):
