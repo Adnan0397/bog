@@ -57,9 +57,7 @@ def search():
         #         isbn = match.group(1)
         #         break
 
-        if cover_id and "user_id" in session:
-            user_id = session.get("user_id")
-            database.add_db(title, author, year, cover_id, "", user_id)
+       
 
         return render_template("search_book.html",title=title,author=author,year=year,cover=cover_id)
 

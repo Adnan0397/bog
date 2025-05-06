@@ -1,23 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css">
-    <title>Liste</title>
-    <h2>Plan to Read</h2>
-{% for book in planned_books %}
-  <div>
-    <img src="https://covers.openlibrary.org/b/id/{{ book[4] }}-M.jpg" alt="Cover">
-    <p><strong>{{ book[1] }}</strong> af {{ book[2] }} ({{ book[3] }})</p>
-    <form method="POST" action="/delete">
-        <input type="hidden" name="cover_id" value="{{ book[4] }}">
-        <button type="submit">🗑 Slet</button>
-    </form>
-  </div>
-{% endfor %}
-
+    <title>My Reading List</title>
 </head>
-      <a href="{{ url_for('index') }}">Back To Lobby</a>
+<body>
+
+    <h1>Plan to Read</h1>
+    {% if planned_books %}
+        <ul>
+            {% for book in planned_books %}
+                <li>
+                    {{ book[1] }} by {{ book[2] }} ({{ book[3] }})
+                    <form action="/delete" method="post" style="display:inline;">
+                        <input type="hidden" name="cover_id" value="{{ book[4] }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books planned to read.</p>
+    {% endif %}
+
+    <h1> Reading</h1>
+    {% if reading_books %}
+        <ul>
+            {% for book in reading_books %}
+                <li>
+                    {{ book[1] }} by {{ book[2] }} ({{ book[3] }})
+                    <form action="/delete" method="post" style="display:inline;">
+                        <input type="hidden" name="cover_id" value="{{ book[4] }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books currently reading.</p>
+    {% endif %}
+
+    <h1>Completed</h1>
+    {% if completed_books %}
+        <ul>
+            {% for book in completed_books %}
+                <li>
+                    {{ book[1] }} by {{ book[2] }} ({{ book[3] }})
+                    <form action="/delete" method="post" style="display:inline;">
+                        <input type="hidden" name="cover_id" value="{{ book[4] }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No completed books.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Back To Lobby</a>
+
 </body>
 </html>
