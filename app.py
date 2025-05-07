@@ -130,7 +130,7 @@ def login():
             session["username"] = user[1]
             return redirect("/")
         else:
-            return render_template("login.html", error="Forkert brugernavn eller adgangskode")
+            return render_template("login.html", error="Wrong Username or password")
 
     return render_template("login.html")
 
