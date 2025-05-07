@@ -27,8 +27,7 @@ def search():
     if not bookquery:
         return redirect(url_for("index"))
 
-    url = f"https://openlibrary.org/search.json?q={bookquery}"  # bruger f" da det gør det nemmer at indsætte variabler i tekststrenge. en f" er en række af karaktere/bogstaver. 
-    # {} er placeholders
+    url = f"https://openlibrary.org/search.json?q={bookquery}"  # bruger f" da det gør det nemmer at indsætte variabler i tekststrenge. en f" er en række af karaktere/bogstaver. # {} er placeholders
     try:
         response = requests.get(url)  # bruger get til at hente data. 
 
