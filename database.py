@@ -92,4 +92,8 @@ def delete_book(cover_id, user_id):
      # print(f"Error {error}")  
    # finally:
 
-   
+   class User:
+    def __init__(self, user_id, username)
+        
+
+        def add_book(self, book)
